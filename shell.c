@@ -1,63 +1,48 @@
 #include "shell.h"
-
+/**
+ *main - Simple creation of Shell
+ *@ac: args
+ *@argv: argv
+ *Return: 0 if worked, error if not.
+ */
 int main(int ac, char **argv)
 {
 	char *prompt = "$ ";
-	char *line = NULL, *line_cpy = NULL;
+	char *line = NULL;
 	size_t n = 0;
+	char *args[] = {line, NULL};
 	ssize_t nread;
-	const char *s = " \n";
-	int num_tokens = 0;
-	char *token;
-	int i;
-
-	//bucle para shells prompt
+	/**bucle para shells prompt*/
 	while (1)
 	{
 		printf("%s", prompt);
 		nread = getline(&line, &n, stdin);
-		//ver si fallo la getline o se entro el comando Crtl+D o EOF
-		if(nread == -1)
+		if (nread == -1)
+		/**ver si fallo la getline o se entro el comando Crtl+D o EOF*/
 		{
-			printf("Shell out\n");
-			return (-1);
+			printf("Shell Out!\n");
+			exit(EXIT_FAILURE);
 		}
+		/** Enter como nueva linea y poder utilizarlo como un ejecutor del programa*/
+		line[strcspn(line, "\n")] = '\0';
+		/** Realizamos fork para que un proceso hijo realice el comando deseado*/
+		pid_t pid = fork();
 
-		//Almacenando espacio para una copia de line
-		line_cpy = malloc(sizeof(char) * nread);
-		if (line_cpy == NULL)
+		if (pid < 0)
 		{
-			perror("ERROR memory Allocation error");
-			return (-1);
+			perror("Fork Failed");
+			exit(EXIT_FAILURE);
 		}
-		//copiando el contenido de la linea original en la linea nueva
-		strcpy(line_cpy, line);
-
-		//Dividiendo la linea origianl para calcular la cantidad de tokens
-		token = strtok(line, s);
-		while (token != NULL)
+		/**Comnzamos proceso hijo y ejecuta comando*/
+		else if (pid == 0)
 		{
-			num_tokens++;
-			token = strtok(NULL, s);
+			if (execve(line, args, NULL) == -1)
+			{
+				perror("Error executing command");
+				exit(EXIT_FAILURE);
+			}
 		}
-		num_tokens++;
-
-		//Almacenando espacio para la cadena de caracteres
-		argv = malloc(sizeof(char *) * num_tokens);
-
-		//Almacenando cada token en el arrya argv
-		token = strtok(line_cpy, s);
-		for (i = 0; token != NULL; i++)
-		{
-			argv[i] = malloc(sizeof(char) * strlen(token));
-			strcpy(argv[i], token);
-
-			token = strtok(NULL, s);
-		}
-		argv[i] = NULL;
-		printf("%s\n", line);
-	
-		//liberando memoria 
+		waitpid(pid, NULL, 0);
 		free(line);
 	}
 	return (0);
