@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ *main - actua como una shell interactiva
+ *@ac: num de argumentos
+ *@av: cadena caracteres que contiene los argumentos de la línea de comando
+ *Return: estado de salida de la shell
+ */
 int main(int ac, char **av)
 {
 	char *line = NULL;
@@ -8,25 +13,27 @@ int main(int ac, char **av)
 	int status = 0;
 	int exitst = 0;
 
-	//bucle de shell 	
+	/**bucle de shell*/
 	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 1)//determinamos si el flujo de archivo es en una terminal interactica
-			printf("BEKA$ ");//si se cumple mostramos en pantalla BEKA$
+/**determinamos si el flujo de archivo es en una terminal interactica*/
+		if (isatty(STDIN_FILENO) == 1)
+/**si se cumple mostramos en pantalla BEKA$*/
+			printf("\033[5;1;35mBEKA$\033[0m ");
 		nread = getline(&line, &n, stdin);
-		if(nread == -1)
+		if (nread == -1)
 		{
-			if(isatty(STDIN_FILENO) == 1)
+			if (isatty(STDIN_FILENO) == 1)
 				printf("\n");
 			break;
 		}
-		//Asociamos la entrada de salto de linea como si fuera el caracter nulo 
+/**Asociamos la entrada de salto de linea como si fuera el caracter nulo*/
 		if (line[nread - 1] == '\n')
 			line[nread - 1] = '\0';
-		//Si es caracter Nulo que continue en ejecucion
+/**Si es caracter Nulo que continue en ejecucion*/
 		if (*line == '\0')
 			continue;
-		//llammada a la funcion para ver si es un comando
+/**Llammada a la funcion para ver si es un comando*/
 		if (command_read(line, nread) == 2)
 			break;
 	}
