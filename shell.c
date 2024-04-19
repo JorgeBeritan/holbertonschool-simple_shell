@@ -8,7 +8,7 @@
 int main(int ac, char **argv)
 {
 	char *prompt = "$ ";
-	char *line = NULL;
+	char *line = NULL; char **command = NULL;
 	size_t n = 0;
 	char *args[] = {line, NULL};
 	ssize_t nread;
