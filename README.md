@@ -20,6 +20,16 @@ La shell implementa las siguientes funcionalidades:
 - Soporte para los comandos `exit` y `env`.
 - Búsqueda y ejecucióde comandos en la ruta del sistema (`PATH`).
 
+## Funciones Utilizadas
+
+Las principales funciones utilizadas en los archivos fuente son:
+
+- `get_envidia`: Obtiene el valor de una variable de entorno especifica.
+- `command_path`: Obtiene la ruta completa de un comando ejecutable en el sistema.
+- `command_read`: Tokeniza la entrada del usuario y ejecuta comandos específicos.
+- `execute`: Ejecuta un comando dado en un proceso hijo.
+- `_printenv`: Imprime las variables de entorno actuales.
+
 ## Uso
 
 Para compilar la shell, puedes utilizar un compilador de C compatible, por ejemplo:
