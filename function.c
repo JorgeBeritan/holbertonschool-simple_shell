@@ -45,7 +45,7 @@ char *command_path(char *cmd)
 	token = strtok(path, ":");
 	/**Asociamos memoria dinamica para un nuevo path*/
 	new_path = malloc(sizeof(char) * 100);
-	if (getenv("PATH")[0] == ':')
+	if (get_envidia("PATH")[0] == ':')
 		if (stat(cmd, &st) == 0)/**checkeamos si existe*/
 			return (strdup(cmd));
 	while (token != NULL)/**Tokenizacion*/
