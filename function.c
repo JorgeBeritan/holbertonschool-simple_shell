@@ -91,7 +91,7 @@ int command_read(char *line, size_t nread)
 	if (strcmp(line, "exit") == 0)
 	{
 		printf("OK");
-		return (2);
+		return (1);
 	}
 	/**analizamos el caso de env y su solucion*/
 	if (strcmp(line, "env") == 0)
