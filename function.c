@@ -119,14 +119,14 @@ int execute(char *cmd_arr[])
 	char *exe_path = NULL, *cmd = NULL;
 	pid_t pid;
 	int status, exit1 = 0;
-	char *name = NULL;
+	char *name = "Command";
 
 	cmd = cmd_arr[0];
 	exe_path = command_path(cmd);
 	/**en el caso de no encontrar el comando se manipula el error*/
 	if (exe_path == NULL)
 	{
-		printf("\033[5;1;35m%s %s: not found\n\033[0m", name, cmd);
+		printf("%s %s: not found\n", name, cmd);
 		exit1 = WEXITSTATUS(status);
 		return (exit1);
 	}
