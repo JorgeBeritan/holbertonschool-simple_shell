@@ -12,6 +12,8 @@ int main(int ac, char **av)
 	ssize_t nread = 0;
 	int status = 0;
 	int exitst = 0;
+	(void)ac;
+	(void)av;
 
 	/**bucle de shell*/
 	while (1)
