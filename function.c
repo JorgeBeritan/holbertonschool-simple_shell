@@ -90,7 +90,7 @@ int command_read(char *line, size_t nread)
 	/**Analizamos el caso de exit y su solucion*/
 	if (strcmp(line, "exit") == 0)
 	{
-		printf("\033[5;1;35mShell OUT\n\033[0m");
+		printf("OK");
 		return (2);
 	}
 	/**analizamos el caso de env y su solucion*/
