@@ -58,7 +58,7 @@ char *command_path(char *cmd)
 	/**Procesamos new_path para que sea una string con el comando en si*/
 	for (i = 0; path_array[i]; i++)
 	{
-		sprintf(new_path, "%s/%s\0", path_array[i], cmd);
+		sprintf(new_path, "%s/%s", path_array[i], cmd);
 		if (stat(new_path, &st) == 0)
 		{
 			free(path);
@@ -85,6 +85,7 @@ int command_read(char *line, size_t nread)
 	char *token = NULL;
 	char *cmd_arr[100];
 	int i = 0;
+	(void)nread;
 
 	/**Analizamos el caso de exit y su solucion*/
 	if (strcmp(line, "exit") == 0)
@@ -118,7 +119,7 @@ int execute(char *cmd_arr[])
 	char *exe_path = NULL, *cmd = NULL;
 	pid_t pid;
 	int status, exit1 = 0;
-	char *name;
+	char *name = NULL;
 
 	cmd = cmd_arr[0];
 	exe_path = command_path(cmd);
