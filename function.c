@@ -90,7 +90,7 @@ int command_read(char *line, size_t nread)
 	if (strcmp(line, "exit") == 0)
 	{
 		free(line);
-		return (0);
+		exit(0);
 	}
 	/**analizamos el caso de env y su solucion*/
 	if (strcmp(line, "env") == 0)
