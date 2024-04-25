@@ -96,7 +96,7 @@ int command_read(char *line, size_t nread)
 		return (_printenv());
 	/**Arreglar tema de los espacios*/
 	while (*line && *line == ' ')
-		line++;
+	line++;
 	/**tokenizamos el comando que se nos pasa con el delimitador " "*/
 	token = strtok(line, " ");
 	while (token)
