@@ -39,8 +39,7 @@ char *command_path(char *cmd)
 	char *new_path = NULL;
 	struct stat st;
 
-	if (stat(cmd, &st) == 0)
-		path = strdup(get_envidia("PATH"));
+	path = strdup(get_envidia("PATH"));
 /**tokenizamos path para separar todos los pathing*/
 	token = strtok(path, ":");
 	/**Asociamos memoria dinamica para un nuevo path*/
