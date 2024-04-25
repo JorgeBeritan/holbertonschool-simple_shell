@@ -90,7 +90,7 @@ int command_read(char *line, size_t nread)
 	if (strcmp(line, "exit") == 0)
 	{
 		free(line);
-		exit(2);
+		exit(0);
 	}
 	/**analizamos el caso de env y su solucion*/
 	if (strcmp(line, "env") == 0)
@@ -117,7 +117,7 @@ int execute(char *cmd_arr[])
 {
 	char *exe_path = NULL, *cmd = NULL;
 	pid_t pid;
-	int status, exit1 = 0;
+	int status, exit1 = 2;
 	char *name = "Command";
 
 	cmd = cmd_arr[0];
