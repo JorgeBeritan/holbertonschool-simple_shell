@@ -89,6 +89,7 @@ int command_read(char *line, size_t nread)
 	/**Analizamos el caso de exit y su solucion*/
 	if (strcmp(line, "exit") == 0)
 	{
+		write(1, "\nShell OUT\n\n", 13);
 		exit (0);
 	}
 	/**analizamos el caso de env y su solucion*/
