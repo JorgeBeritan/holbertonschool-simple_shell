@@ -29,6 +29,8 @@ int main(int ac, char **av)
 				printf("\n");
 			break;
 		}
+		if (line != NULL)
+			continue;
 /**Asociamos la entrada de salto de linea como si fuera el caracter nulo*/
 		if (line[nread - 1] == '\n')
 			line[nread - 1] = '\0';
