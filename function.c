@@ -46,7 +46,7 @@ char *command_path(char *cmd)
 	new_path = malloc(sizeof(char) * 100);
 	if (get_envidia("PATH")[0] == ':')
 		if (stat(cmd, &st) == 0)/**checkeamos si existe*/
-			return (cmd);
+			return (strdup(cmd));
 	while (token != NULL)/**Tokenizacion*/
 	{
 		path_array[i] = token;
