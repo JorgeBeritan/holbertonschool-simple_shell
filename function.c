@@ -117,7 +117,7 @@ int execute(char *cmd_arr[])
 {
 	char *exe_path = NULL, *cmd = NULL;
 	pid_t pid;
-	int status, exit1 = 2;
+	int status, exit1 = 0;
 	char *name = "Command";
 
 	cmd = cmd_arr[0];
@@ -142,7 +142,7 @@ int execute(char *cmd_arr[])
 		{
 			execve(exe_path, cmd_arr, NULL);
 			perror("Error");
-			exit(1);
+			exit(2);
 		}
 	}
 	else
