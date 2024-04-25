@@ -122,7 +122,7 @@ int execute(char *cmd_arr[])
 	cmd = cmd_arr[0];
 	exe_path = command_path(cmd);
 	/**en el caso de no encontrar el comando se manipula el error*/
-	if (exe_path)
+	if (exe_path == NULL)
 	{
 		printf("%s %s: not found\n", name, cmd);
 		exit1 = WEXITSTATUS(status);
