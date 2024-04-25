@@ -141,13 +141,9 @@ int execute(char *cmd_arr[])
 	{
 		if (environ)
 		{
-			(execve(exe_path, cmd_arr, environ));
+			execve(exe_path, cmd_arr, NULL);
 			perror("Error:");
 			exit(1);
-		}
-		else
-		{
-			execve(exe_path, cmd_arr, NULL);
 		}
 	}
 	else
