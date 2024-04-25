@@ -37,7 +37,6 @@ int main(int ac, char **av)
 /**Llammada a la funcion para ver si es un comando*/
 		if (command_read(line, nread) == 2)
 			break;
-		fflush(stdin);
 	}
 
 	free(line);
