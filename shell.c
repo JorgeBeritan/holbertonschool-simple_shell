@@ -8,7 +8,7 @@
 int main(int ac, char **av)
 {
 	char *line = NULL;
-	size_t n = 0;
+	size_t n = 0, i;
 	ssize_t nread = 0;
 	int status = 0;
 	int exitst = 0;
@@ -29,6 +29,10 @@ int main(int ac, char **av)
 				printf("\n");
 			break;
 		}
+		for (i = 0; line[i] && (line[i] == ' ' || line[i] == '\n' || line[i] == '\t'); i++)
+		{}
+		if (i == strlen(line))
+			continue;
 /**Asociamos la entrada de salto de linea como si fuera el caracter nulo*/
 		if (line[nread - 1] == '\n')
 			line[nread - 1] = '\0';
