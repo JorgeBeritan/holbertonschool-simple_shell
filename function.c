@@ -39,15 +39,15 @@ char *command_path(char *cmd)
 	char *new_path = NULL;
 	struct stat st;
 
-	/**obtenemos el PATH de las variables de entorno*/
-	path = strdup(get_envidia("PATH"));
+	if (stat(cmd, &st) == 0)
+		path = strdup(get_envidia("PATH"));
 /**tokenizamos path para separar todos los pathing*/
 	token = strtok(path, ":");
 	/**Asociamos memoria dinamica para un nuevo path*/
 	new_path = malloc(sizeof(char) * 100);
 	if (get_envidia("PATH")[0] == ':')
 		if (stat(cmd, &st) == 0)/**checkeamos si existe*/
-			return (strdup(cmd));
+			return (cmd);
 	while (token != NULL)/**Tokenizacion*/
 	{
 		path_array[i] = token;
@@ -97,7 +97,7 @@ int command_read(char *line, size_t nread)
 		return (_printenv());
 	/**Arreglar tema de los espacios*/
 	while (*line && *line == ' ')
-	line++;
+		line++;
 	/**tokenizamos el comando que se nos pasa con el delimitador " "*/
 	token = strtok(line, " ");
 	while (token)
