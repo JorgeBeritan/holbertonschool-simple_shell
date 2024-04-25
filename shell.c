@@ -25,12 +25,9 @@ int main(int ac, char **av)
 		nread = getline(&line, &n, stdin);
 		if (nread == -1)
 		{
-			if (isatty(STDIN_FILENO) == 1)
-				printf("\n");
+			printf("\n");
 			break;
 		}
-		if (line != NULL)
-			continue;
 /**Asociamos la entrada de salto de linea como si fuera el caracter nulo*/
 		if (line[nread - 1] == '\n')
 			line[nread - 1] = '\0';
@@ -41,6 +38,7 @@ int main(int ac, char **av)
 		if (command_read(line, nread) == 2)
 			break;
 	}
+	fflush(stdout);
 
 	free(line);
 	line = NULL;
