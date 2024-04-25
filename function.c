@@ -98,11 +98,11 @@ int command_read(char *line, size_t nread)
 	while (*line && *line == ' ')
 	line++;
 	/**tokenizamos el comando que se nos pasa con el delimitador " "*/
-	token = strtok(line, " ");
+	token = strtok(line, " \t\n");
 	while (token)
 	{
 		cmd_arr[i++] = token;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \t\n");
 	}
 	cmd_arr[i] = NULL;
 	return (execute(cmd_arr));
