@@ -90,7 +90,7 @@ int command_read(char *line, size_t nread)
 	/**Analizamos el caso de exit y su solucion*/
 	if (strcmp(line, "exit") == 0)
 	{
-		printf("OK");
+		perror("OK");
 		return (1);
 	}
 	/**analizamos el caso de env y su solucion*/
